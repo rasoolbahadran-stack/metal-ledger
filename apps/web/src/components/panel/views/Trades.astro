@@ -1,0 +1,64 @@
+---
+---
+
+<section class="view-section" data-section="trades" aria-label="معاملات">
+  <div class="page-heading">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>ثبت و پیگیری اسناد</div>
+      <h1>مدیریت معاملات</h1>
+      <p class="page-sub">تاریخچه خرید و فروش مشتریان، وضعیت اسناد و جزئیات هر سند.</p>
+    </div>
+    <div class="heading-actions">
+      <button class="button button-secondary" data-toast="فیلتر تاریخ پس از اتصال به API فعال می‌شود.">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+        بازه زمانی
+      </button>
+      <button class="button button-primary" data-open-modal="tradeModal">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        ثبت معامله
+      </button>
+    </div>
+  </div>
+
+  <article class="panel full-panel">
+    <div class="table-toolbar">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+        <input id="tradeSearch" type="search" placeholder="جست‌وجوی شناسه سند یا مشتری..." aria-label="جست‌وجوی معاملات" />
+      </div>
+      <div class="toolbar-filters">
+        <div class="select-wrap">
+          <select id="tradeTypeFilter" class="select" style="min-height:38px;width:160px;font-size:var(--fs-xs)" aria-label="فیلتر نوع معامله">
+            <option value="all">همه معاملات</option>
+            <option value="buy">خرید مشتری</option>
+            <option value="sell">فروش مشتری</option>
+          </select>
+        </div>
+        <div class="select-wrap">
+          <select id="tradeStatusFilter" class="select" style="min-height:38px;width:160px;font-size:var(--fs-xs)" aria-label="فیلتر وضعیت سند">
+            <option value="all">همه وضعیت‌ها</option>
+            <option value="posted">قطعی</option>
+            <option value="draft">پیش‌نویس</option>
+            <option value="reversed">برگشت‌خورده</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table" id="tradeTable">
+        <thead><tr><th>شناسه سند</th><th>تاریخ</th><th>مشتری</th><th>نوع معامله</th><th>محصول</th><th>وزن</th><th>نرخ واحد</th><th>مبلغ کل</th><th>وضعیت</th><th><span class="sr-only">عملیات</span></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="tradeEmpty">
+      <span class="empty-icon"><svg viewBox="0 0 24 24"><path d="M4 7h15M15 3l4 4-4 4M20 17H5m4-4-4 4 4 4"/></svg></span>
+      <strong>سندی یافت نشد</strong>
+      <p>با فیلترهای فعلی هیچ سندی منطبق نیست. فیلترها را تغییر دهید یا سند جدید ثبت کنید.</p>
+      <button class="button button-secondary button-sm" data-open-modal="tradeModal">ثبت معامله</button>
+    </div>
+    <div class="table-footer">
+      <span id="tradeResults">—</span>
+      <div class="pagination" id="tradePagination"></div>
+    </div>
+  </article>
+</section>

@@ -21,11 +21,16 @@
 ```text
 metal-ledger/
 ├── apps/
-│   ├── web/                 # Astro static showcase (GitHub Pages)
+│   ├── web/                        # Astro static showcase (GitHub Pages)
 │   │   └── src/
+│   │       ├── assets/fonts/       # Vazirmatn self-hosted (بدون CDN خارجی)
+│   │       ├── components/panel/   # کامپوننت‌های پنل (Sidebar، Topbar، نماها، مودال‌ها)
 │   │       ├── pages/
-│   │       ├── scripts/
-│   │       └── styles/
+│   │       │   ├── index.astro     # وب‌سایت معرفی عمومی (/)
+│   │       │   ├── app/index.astro # پنل نمایشی (/app/)
+│   │       │   └── 404.astro       # صفحه ۴۰۴
+│   │       ├── scripts/            # app.js، demo-data.js، format.js، landing.js
+│   │       └── styles/             # tokens، base، components، app، landing
 │   └── api/                 # Next.js API + Prisma schema
 │       ├── app/api/
 │       ├── lib/
@@ -33,10 +38,19 @@ metal-ledger/
 │       └── src/
 │           ├── domain/
 │           └── services/
-├── docs/                    # معماری، قواعد حسابداری، API و وضعیت پیاده‌سازی
+├── docs/                    # معماری، قواعد حسابداری، API، وضعیت پیاده‌سازی و بازطراحی
 ├── infra/                   # Docker Compose برای PostgreSQL توسعه
 └── .github/workflows/       # انتشار Astro روی GitHub Pages
 ```
+
+### مسیرهای نسخه نمایشی
+
+| مسیر | محتوا |
+|---|---|
+| `/` | وب‌سایت معرفی عمومی محصول |
+| `/app/` | نسخه نمایشی پنل مدیریت (۱۱ ماژول با داده کاملاً نمونه) |
+
+لینک‌های داخلی با `BASE_URL` ساخته می‌شوند و با `PUBLIC_BASE_PATH` در Workflow سازگارند. جزئیات ممیزی و تصمیم‌های طراحی نسخه ۰.۲ در `docs/REDESIGN_NOTES.md` آمده است.
 
 ## اجرای محلی
 

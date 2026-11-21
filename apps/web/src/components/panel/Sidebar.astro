@@ -1,0 +1,53 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<aside class="sidebar" id="sidebar" aria-label="ناوبری اصلی">
+  <div class="brand-row">
+    <div class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 40 40"><path d="M8 26.5 15.8 11l4.3 8.1 4.2-8.1L32 26.5H8Z" /><path d="M12 29.5h16" stroke-linecap="round"/><circle cx="20" cy="8" r="1.7" fill="currentColor" stroke="none"/></svg>
+    </div>
+    <div class="brand-copy"><strong>فلزنگار</strong><span>METAL LEDGER</span></div>
+    <button class="icon-button sidebar-close" id="sidebarClose" aria-label="بستن منو">
+      <svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+
+  <button type="button" class="workspace-switcher" data-toast="در نسخه نمایشی فقط یک فضای کاری نمونه وجود دارد.">
+    <div class="workspace-icon">م</div>
+    <div class="workspace-copy"><span>فضای کاری</span><strong>بازرگانی میزان فلز</strong></div>
+    <svg class="chevron" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg>
+  </button>
+
+  <div class="nav-caption">فضای کاری</div>
+  <nav class="nav-list" aria-label="بخش‌های کاری">
+    <button class="nav-link active" data-view="dashboard"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="4.5" rx="1.5"/><rect x="13.5" y="11" width="7" height="9.5" rx="1.5"/><rect x="3.5" y="13" width="7" height="7.5" rx="1.5"/></svg><span>نمای کلی</span></button>
+    <button class="nav-link" data-view="customers"><svg viewBox="0 0 24 24"><path d="M16 20v-1.5a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4V20M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM16 3.2a4 4 0 0 1 0 7.6M17 14.7a4 4 0 0 1 4 4V20"/></svg><span>مشتریان</span><span class="nav-count">۱۲</span></button>
+    <button class="nav-link" data-view="trades"><svg viewBox="0 0 24 24"><path d="M4 7h15M15 3l4 4-4 4M20 17H5m4-4-4 4 4 4"/></svg><span>معاملات</span></button>
+    <button class="nav-link" data-view="balances"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 7h14M7 7l-4 7h8L7 7ZM17 7l-4 7h8l-4-7ZM8 21h8"/></svg><span>مانده وزنی</span></button>
+  </nav>
+
+  <div class="nav-caption nav-caption-gap">مدیریت عملیات</div>
+  <nav class="nav-list" aria-label="مدیریت عملیات">
+    <button class="nav-link" data-view="prices"><svg viewBox="0 0 24 24"><path d="M4 18.5 9 13l3.5 3.5L20 8M15 8h5v5"/><path d="M4 4v16h16"/></svg><span>قیمت فلزات</span><i class="live-dot" title="نمایشی"></i></button>
+    <button class="nav-link" data-view="products"><svg viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4.5 7.8 7.5 4.4 7.5-4.4M12 12.2V21"/></svg><span>محصولات</span></button>
+    <button class="nav-link" data-view="payments"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg><span>پرداخت‌ها</span></button>
+    <button class="nav-link" data-view="deliveries"><svg viewBox="0 0 24 24"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5v-9Z"/><path d="M3.5 7.8 12 12l8.5-4.2M12 12v9M8 5l9 4.2"/></svg><span>تحویل کالا</span></button>
+    <button class="nav-link" data-view="statements"><svg viewBox="0 0 24 24"><path d="M6 3.5h9l4 4V21H6zM15 3.5V8h4M9 12h7M9 16h7"/></svg><span>دفتر حساب</span></button>
+    <button class="nav-link" data-view="reports"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h17M8 15l3-4 3 2 5-7"/></svg><span>گزارش‌ها</span></button>
+  </nav>
+
+  <div class="nav-caption nav-caption-gap">تنظیمات</div>
+  <nav class="nav-list" aria-label="تنظیمات">
+    <button class="nav-link" data-view="settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.2 1-.1 1.8-1.6 1.1-1.5-.7-.1-.1-1.3.7-.4 1.7h-2l-.8-1.5-1.5-.2-1.3 1-1.7-.8-.1-1.8 1.2-1.1-.1-1.5-1.5-.8v-2l1.6-.7.5-1.4-.8-1.6 1.3-1.4 1.7.5 1.2-.7.4-1.7h2l.8 1.5 1.5.2 1.3-1 1.7.8.1 1.8-1.2 1.1.1 1.5 1.5.8v2l-1.6.7-.5 1.4Z"/></svg><span>تنظیمات سامانه</span></button>
+  </nav>
+
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-help">
+    <div class="help-orbit"><svg viewBox="0 0 24 24"><path d="M12 17v.1M9.6 9a2.5 2.5 0 1 1 4.4 1.6c-.9 1-2 1.1-2 2.7M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z"/></svg></div>
+    <strong>به راهنمایی نیاز دارید؟</strong>
+    <span>مرکز راهنما در نسخه عملیاتی فعال می‌شود.</span>
+    <button type="button" class="help-action" data-toast="بخش راهنما در نسخه عملیاتی فعال می‌شود.">مشاهده راهنما <span>←</span></button>
+  </div>
+  <div class="sidebar-footer"><span class="status-pulse"></span><span>نسخه نمایشی</span><span class="version">v0.2.0</span></div>
+</aside>

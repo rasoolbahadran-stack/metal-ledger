@@ -1,0 +1,62 @@
+---
+import Layout from '../../layouts.astro';
+import Sidebar from '../../components/panel/Sidebar.astro';
+import Topbar from '../../components/panel/Topbar.astro';
+import Overlays from '../../components/panel/Overlays.astro';
+import Modals from '../../components/panel/Modals.astro';
+import Dashboard from '../../components/panel/views/Dashboard.astro';
+import Customers from '../../components/panel/views/Customers.astro';
+import Trades from '../../components/panel/views/Trades.astro';
+import Balances from '../../components/panel/views/Balances.astro';
+import Prices from '../../components/panel/views/Prices.astro';
+import Products from '../../components/panel/views/Products.astro';
+import Payments from '../../components/panel/views/Payments.astro';
+import Deliveries from '../../components/panel/views/Deliveries.astro';
+import Statements from '../../components/panel/views/Statements.astro';
+import Reports from '../../components/panel/views/Reports.astro';
+import Settings from '../../components/panel/views/Settings.astro';
+---
+
+<Layout
+  title="نمای کلی | فلزنگار — نسخه نمایشی"
+  description="نسخه نمایشی پنل مدیریت فلزنگار: معاملات، مانده وزنی، دفتر حساب و گزارش‌ها با داده‌های کاملاً نمونه."
+>
+  <a class="skip-link" href="#mainContent">پرش به محتوای اصلی</a>
+  <div class="app-shell" id="appShell">
+    <Sidebar />
+    <div class="mobile-scrim" id="mobileScrim"></div>
+    <main class="main-area" id="mainContent">
+      <Topbar />
+      <div class="demo-notice">
+        <span class="notice-icon"><svg viewBox="0 0 24 24"><path d="M12 8v4m0 4h.01M10.3 3.8 2.9 17a2 2 0 0 0 1.8 3h14.6a2 2 0 0 0 1.8-3L13.7 3.8a2 2 0 0 0-3.4 0Z"/></svg></span>
+        <span><strong>محیط نمایشی</strong> — همه اعداد، نام‌ها و سوابق این پنل نمونه هستند و به حساب، بازار یا دیتابیس واقعی متصل نیستند.</span>
+        <button type="button" aria-label="بستن هشدار" id="dismissNotice"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="content-wrap">
+        <Dashboard />
+        <Customers />
+        <Trades />
+        <Balances />
+        <Prices />
+        <Products />
+        <Payments />
+        <Deliveries />
+        <Statements />
+        <Reports />
+        <Settings />
+      </div>
+      <footer class="main-footer">
+        <span>فلزنگار <b>·</b> سامانه مدیریت معاملات فلزات</span>
+        <span><a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/`} style="color:var(--accent-strong);font-weight:700">وب‌سایت معرفی محصول ←</a></span>
+        <span>نسخه نمایشی <strong>v0.2.0</strong></span>
+      </footer>
+    </main>
+  </div>
+
+  <Overlays />
+  <Modals />
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="false"></div>
+  <script>
+    import '../../scripts/app.js';
+  </script>
+</Layout>

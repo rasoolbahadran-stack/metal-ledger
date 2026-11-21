@@ -1,0 +1,36 @@
+---
+---
+
+<section class="view-section" data-section="deliveries" aria-label="تحویل کالا">
+  <div class="page-heading">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>تحویل فیزیکی</div>
+      <h1>تحویل کالا</h1>
+      <p class="page-sub">ثبت رسید تحویل و کنترل اثر وزنی هر عملیات.</p>
+    </div>
+    <div class="heading-actions">
+      <button class="button button-primary" data-open-modal="deliveryModal">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        ثبت تحویل جدید
+      </button>
+    </div>
+  </div>
+
+  <div class="price-warning">
+    <span aria-hidden="true">i</span>
+    <div>
+      <strong>کنترل مانده وزنی در سمت سرور</strong>
+      <p>قبل از قطعی‌شدن تحویل، مانده همان مشتری و همان محصول در سمت سرور بررسی می‌شود و تحویل بیش از مانده در سرویس پایه رد می‌گردد. در این نسخه نمایشی هیچ تحویل واقعی ثبت نمی‌شود.</p>
+    </div>
+  </div>
+
+  <article class="panel full-panel">
+    <div class="table-scroll">
+      <table class="data-table" id="deliveryTable">
+        <thead><tr><th>شماره رسید</th><th>مشتری</th><th>محصول</th><th>وزن تحویل</th><th>تاریخ</th><th>وضعیت</th><th>توضیحات</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="table-footer"><span id="deliveryResults">—</span><span>تحویل فقط دفتر وزنی را تغییر می‌دهد؛ طبق قواعد فعلی اثر مالی ندارد</span></div>
+  </article>
+</section>

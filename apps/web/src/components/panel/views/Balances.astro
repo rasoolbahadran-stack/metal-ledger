@@ -1,0 +1,45 @@
+---
+---
+
+<section class="view-section" data-section="balances" aria-label="مانده وزنی">
+  <div class="page-heading">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>دفتر وزنی</div>
+      <h1>مانده وزنی مشتریان</h1>
+      <p class="page-sub">گردش موجودی هر مشتری به تفکیک محصول و واحد اندازه‌گیری — جدا از دفتر مالی.</p>
+    </div>
+    <div class="heading-actions">
+      <button class="button button-secondary" data-toast="خروجی گزارش مانده‌ها پس از اتصال به دیتابیس فعال می‌شود.">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 19h16"/></svg>
+        خروجی گزارش
+      </button>
+    </div>
+  </div>
+
+  <div class="balance-summary-grid">
+    <article class="panel"><span>مانده کل طلا</span><strong><span id="balGold">۰</span> <small>کیلوگرم</small></strong><i class="metal-symbol gold">Au</i></article>
+    <article class="panel"><span>مانده کل نقره</span><strong><span id="balSilver">۰</span> <small>کیلوگرم</small></strong><i class="metal-symbol silver">Ag</i></article>
+    <article class="panel"><span>مانده کل پلاتین</span><strong><span id="balPlatinum">۰</span> <small>کیلوگرم</small></strong><i class="metal-symbol platinum">Pt</i></article>
+  </div>
+
+  <article class="panel full-panel">
+    <div class="panel-heading inset-heading">
+      <div><h2>گردش و مانده به تفکیک مشتری</h2><p class="panel-sub">مانده = جمع خرید − جمع فروش − تحویل‌شده · مقادیر نمایشی</p></div>
+      <div class="select-wrap">
+        <select id="balanceProductFilter" class="select" style="min-height:38px;width:190px;font-size:var(--fs-xs)" aria-label="فیلتر محصول"></select>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table" id="balanceTable">
+        <thead><tr><th>مشتری</th><th>محصول</th><th>جمع خرید</th><th>جمع فروش</th><th>تحویل‌شده</th><th>مانده</th><th>واحد</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="balanceEmpty">
+      <span class="empty-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 7h14M7 7l-4 7h8L7 7ZM17 7l-4 7h8l-4-7ZM8 21h8"/></svg></span>
+      <strong>ردیفی برای نمایش نیست</strong>
+      <p>برای این فیلتر مانده وزنی نمایشی وجود ندارد.</p>
+    </div>
+    <div class="table-footer"><span id="balanceResults">—</span><span>دقت وزن نمایشی: سه رقم اعشار</span></div>
+  </article>
+</section>
