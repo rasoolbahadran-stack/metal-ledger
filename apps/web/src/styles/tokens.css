@@ -1,0 +1,144 @@
+/* ============================================================
+   فلزنگار — Design Tokens
+   هویت بصری: Graphite + Warm Ivory + Champagne Gold + Bronze
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* --- رنگ‌های پایه (روشن) --- */
+  --bg: #f6f4ee;                       /* Warm Ivory — زمینه صفحه */
+  --surface: #fffdf9;                  /* سطح کارت‌ها */
+  --surface-2: #faf7f1;                /* سطح نرم */
+  --surface-3: #f1ede4;                /* سطح غیرفعال / هاور */
+  --text: #30343b;                     /* متن اصلی — Deep Graphite */
+  --text-strong: #1c1f24;
+  --text-soft: #6b7078;
+  --muted: #8d919b;
+  --muted-2: #a9adb6;
+  --line: #e7e3d8;
+  --line-strong: #d8d3c5;
+
+  /* --- برند --- */
+  --brand: #292c33;                    /* Deep Graphite — دکمه اصلی و ناوبری */
+  --brand-strong: #1d2025;
+  --brand-soft: #eceae2;
+  --on-brand: #f7f4ec;
+  --accent: #a9853e;                   /* Champagne Gold */
+  --accent-strong: #8a6a2c;
+  --accent-soft: #f4ecdb;
+  --bronze: #8d6e4e;                   /* Muted Bronze */
+  --bronze-strong: #75583b;
+  --bronze-soft: #efe7db;
+
+  /* --- وضعیت‌ها --- */
+  --success: #2e7d55;
+  --success-soft: #e6f2ea;
+  --danger: #bf4f44;
+  --danger-soft: #fbebe8;
+  --warning: #a1741e;
+  --warning-soft: #f9f0da;
+  --info: #4e7396;
+  --info-soft: #eaf1f8;
+
+  /* --- فلزات --- */
+  --metal-gold: #ab8339;
+  --metal-silver: #7f93a9;
+  --metal-platinum: #8f86ab;
+  --metal-bronze: #8d6e4e;
+
+  /* --- تایپوگرافی --- */
+  --font-sans: "Vazirmatn", "Segoe UI", Tahoma, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --fs-display: 30px;
+  --fs-title-lg: 22px;
+  --fs-title: 17px;
+  --fs-body: 14px;
+  --fs-small: 12.5px;
+  --fs-xs: 11.5px;
+  --fs-micro: 10.5px;
+
+  /* --- فاصله‌ها --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 44px;
+
+  /* --- گردی گوشه‌ها --- */
+  --radius-xs: 7px;
+  --radius-sm: 9px;
+  --radius-md: 13px;
+  --radius-lg: 17px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+
+  /* --- سایه و ارتفاع --- */
+  --shadow-1: 0 1px 2px rgba(31, 32, 36, .05), 0 1px 4px rgba(31, 32, 36, .04);
+  --shadow-2: 0 2px 6px rgba(31, 32, 36, .05), 0 10px 26px rgba(31, 32, 36, .06);
+  --shadow-3: 0 4px 12px rgba(31, 32, 36, .08), 0 16px 40px rgba(31, 32, 36, .10);
+  --shadow-4: 0 10px 26px rgba(20, 21, 25, .14), 0 34px 80px rgba(20, 21, 25, .18);
+  --ring: 0 0 0 3px rgba(169, 133, 62, .30);
+
+  /* --- حرکت --- */
+  --ease-soft: cubic-bezier(.22, .61, .36, 1);
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 420ms;
+
+  /* --- چیدمان --- */
+  --sidebar-w: 268px;
+  --topbar-h: 72px;
+  --content-max: 1760px;
+  --content-pad: 34px;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #15161a;
+  --surface: #1d1f24;
+  --surface-2: #22252b;
+  --surface-3: #2b2e35;
+  --text: #d6d3ca;
+  --text-strong: #f1eee5;
+  --text-soft: #a3a19a;
+  --muted: #8f8d87;
+  --muted-2: #77756f;
+  --line: #2e3138;
+  --line-strong: #3c4048;
+
+  --brand: #d2ae72;                    /* در تاریک، طلایی نقش برند را می‌گیرد */
+  --brand-strong: #e3c48c;
+  --brand-soft: #34301f;
+  --on-brand: #221e13;
+  --accent: #d0ab6e;
+  --accent-strong: #e6c88f;
+  --accent-soft: #33301f;
+  --bronze: #b29672;
+  --bronze-strong: #cbb08d;
+  --bronze-soft: #322c21;
+
+  --success: #6fbd92;
+  --success-soft: #24382c;
+  --danger: #e08a7f;
+  --danger-soft: #3f2a27;
+  --warning: #d3a557;
+  --warning-soft: #383018;
+  --info: #8fb0cf;
+  --info-soft: #263443;
+
+  --metal-gold: #d0ab6e;
+  --metal-silver: #9fb2c7;
+  --metal-platinum: #a89fc4;
+  --metal-bronze: #b29672;
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, .2);
+  --shadow-2: 0 2px 8px rgba(0, 0, 0, .22), 0 12px 30px rgba(0, 0, 0, .18);
+  --shadow-3: 0 6px 16px rgba(0, 0, 0, .26), 0 20px 48px rgba(0, 0, 0, .22);
+  --shadow-4: 0 12px 30px rgba(0, 0, 0, .34), 0 40px 90px rgba(0, 0, 0, .38);
+  --ring: 0 0 0 3px rgba(208, 171, 110, .35);
+}

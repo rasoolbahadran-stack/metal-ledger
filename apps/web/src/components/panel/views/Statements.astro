@@ -1,0 +1,50 @@
+---
+---
+
+<section class="view-section" data-section="statements" aria-label="دفتر حساب مشتری">
+  <div class="page-heading">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>دفتر معین</div>
+      <h1>دفتر حساب مشتری</h1>
+      <p class="page-sub">گردش بدهکار و بستانکار، مانده تجمعی و مرجع سند — محاسبه‌شده از داده نمایشی.</p>
+    </div>
+    <div class="heading-actions">
+      <button class="button button-secondary" id="printStatement">
+        <svg viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z"/></svg>
+        چاپ / PDF
+      </button>
+    </div>
+  </div>
+
+  <article class="panel statement-card">
+    <div class="statement-filters">
+      <label class="field"><span class="field-label">مشتری</span>
+        <select id="stmtCustomer" class="select"></select>
+      </label>
+      <label class="field"><span class="field-label">از تاریخ</span>
+        <input id="stmtFrom" class="input" type="text" value="۱۴۰۵/۰۸/۰۱" readonly aria-label="از تاریخ (نمایشی)" />
+      </label>
+      <label class="field"><span class="field-label">تا تاریخ</span>
+        <input id="stmtTo" class="input" type="text" value="۱۴۰۵/۰۸/۳۰" readonly aria-label="تا تاریخ (نمایشی)" />
+      </label>
+      <button class="button button-primary" data-toast="فیلتر تاریخ دفتر حساب پس از اتصال به دیتابیس اجرا می‌شود؛ انتخاب مشتری همین حالا کار می‌کند.">اعمال فیلتر</button>
+    </div>
+    <div class="statement-overview">
+      <div><small>مانده مالی مشتری</small><strong id="stmtFin">—</strong></div>
+      <div><small>مانده وزنی طلا</small><strong id="stmtWeight">—</strong></div>
+      <div><small>تعداد رویدادهای دفتر</small><strong id="stmtCount">—</strong></div>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table" id="stmtTable">
+        <thead><tr><th>تاریخ</th><th>شماره سند</th><th>شرح رویداد</th><th>محصول</th><th>وزن</th><th>بدهکار</th><th>بستانکار</th><th>مانده</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="stmtEmpty">
+      <span class="empty-icon"><svg viewBox="0 0 24 24"><path d="M6 3.5h9l4 4V21H6zM15 3.5V8h4M9 12h7M9 16h7"/></svg></span>
+      <strong>رویدادی ثبت نشده است</strong>
+      <p>برای این مشتری رویدادی در بازه نمایشی وجود ندارد.</p>
+    </div>
+    <p class="table-note">مانده‌ها بر اساس قرارداد بدهکار مثبت / بستانکار منبع محاسبه شده‌اند. رویداد تحویل فیزیکی فقط دفتر وزنی را تغییر می‌دهد و ردیف مالی ندارد. این دفتر صرفاً از داده نمایشی ساخته شده است.</p>
+  </article>
+</section>

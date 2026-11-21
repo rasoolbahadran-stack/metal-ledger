@@ -1,0 +1,55 @@
+---
+---
+
+<section class="view-section" data-section="customers" aria-label="مشتریان">
+  <div class="page-heading">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>مدیریت ارتباطات</div>
+      <h1>مشتریان</h1>
+      <p class="page-sub">مدیریت اطلاعات، خلاصه حساب وزنی و مالی و سوابق مشتریان.</p>
+    </div>
+    <div class="heading-actions">
+      <button class="button button-secondary" data-toast="خروجی CSV پس از اتصال به داده واقعی فعال می‌شود.">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 19h16"/></svg>
+        خروجی گرفتن
+      </button>
+      <button class="button button-primary" data-open-modal="customerModal">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        افزودن مشتری
+      </button>
+    </div>
+  </div>
+
+  <article class="panel full-panel">
+    <div class="table-toolbar">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+        <input id="customerSearch" type="search" placeholder="جست‌وجو با نام یا کد مشتری..." aria-label="جست‌وجوی مشتریان" />
+      </div>
+      <div class="toolbar-filters">
+        <div class="select-wrap">
+          <select id="customerStatusFilter" class="select" style="min-height:38px;width:170px;font-size:var(--fs-xs)" aria-label="فیلتر وضعیت">
+            <option value="all">همه وضعیت‌ها</option>
+            <option value="active">فعال</option>
+            <option value="inactive">غیرفعال</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table customer-table" id="customerTable">
+        <thead><tr><th>مشتری</th><th>کد مشتری</th><th>شماره تماس</th><th>مانده وزنی</th><th>مانده مالی</th><th>وضعیت</th><th><span class="sr-only">عملیات</span></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="customerEmpty">
+      <span class="empty-icon"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg></span>
+      <strong>موردی یافت نشد</strong>
+      <p>هیچ مشتری‌ای با این عبارت یا فیلتر منطبق نیست. عبارت جست‌وجو را تغییر دهید.</p>
+    </div>
+    <div class="table-footer">
+      <span id="customerResults">—</span>
+      <div class="pagination" id="customerPagination"></div>
+    </div>
+  </article>
+</section>

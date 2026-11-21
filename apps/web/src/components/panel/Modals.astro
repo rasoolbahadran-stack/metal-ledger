@@ -1,0 +1,169 @@
+---
+---
+
+<!-- مودال ثبت معامله -->
+<div class="modal-backdrop" id="tradeModal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="tradeModalTitle">
+    <div class="modal-head">
+      <div><span class="eyebrow"><span class="eyebrow-line"></span>سند نمایشی</span><h2 id="tradeModalTitle">ثبت معامله جدید</h2></div>
+      <button class="icon-button modal-close" data-close-modal aria-label="بستن"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <form id="tradeForm" class="modal-form" novalidate>
+      <label class="field"><span class="field-label">مشتری<span class="required-mark">*</span></span>
+        <select id="tradeCustomer" class="select" required></select>
+        <span class="field-error">انتخاب مشتری الزامی است.</span>
+      </label>
+      <div class="form-grid-2">
+        <label class="field"><span class="field-label">نوع معامله<span class="required-mark">*</span></span>
+          <select id="tradeType" class="select" required>
+            <option value="buy">خرید مشتری از ما</option>
+            <option value="sell">فروش مشتری به ما</option>
+          </select>
+        </label>
+        <label class="field"><span class="field-label">محصول<span class="required-mark">*</span></span>
+          <select id="tradeProduct" class="select" required></select>
+        </label>
+      </div>
+      <div class="form-grid-2">
+        <label class="field"><span class="field-label">وزن (گرم)<span class="required-mark">*</span></span>
+          <input id="tradeWeight" class="input" type="number" min="0.001" step="0.001" placeholder="مثلاً ۲۵۰" required />
+          <span class="field-error">وزن باید عددی بزرگ‌تر از صفر باشد.</span>
+        </label>
+        <label class="field"><span class="field-label">قیمت واحد (واحد پول نمونه)<span class="required-mark">*</span></span>
+          <input id="tradePrice" class="input" type="number" min="0" step="1" value="7500000" required />
+          <span class="field-error">قیمت باید عددی نامنفی باشد.</span>
+        </label>
+      </div>
+      <div class="amount-preview" style="border:1px solid color-mix(in srgb, var(--accent) 38%, var(--line));background:var(--accent-soft);border-radius:var(--radius-sm);padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px">
+        <span style="color:var(--muted);font-size:var(--fs-xs)">مبلغ محاسبه‌شده (وزن × نرخ)</span>
+        <strong id="tradeAmount" style="color:var(--text-strong);font-variant-numeric:tabular-nums">۰ واحد پول نمونه</strong>
+      </div>
+      <label class="field"><span class="field-label">توضیحات</span>
+        <textarea id="tradeNotes" class="textarea" rows="2" placeholder="توضیح تکمیلی (اختیاری)"></textarea>
+      </label>
+      <div class="modal-disclaimer"><span aria-hidden="true">ⓘ</span> ثبت این فرم فقط ردیف نمایشی در همین صفحه می‌سازد؛ هیچ سند مالی واقعی روی سرور ایجاد نمی‌شود.</div>
+      <div class="modal-actions">
+        <button type="button" class="button button-secondary" data-close-modal>انصراف</button>
+        <button type="submit" class="button button-primary">افزودن سند نمایشی</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- مودال افزودن مشتری -->
+<div class="modal-backdrop" id="customerModal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="customerModalTitle">
+    <div class="modal-head">
+      <div><span class="eyebrow"><span class="eyebrow-line"></span>مشتری نمایشی</span><h2 id="customerModalTitle">افزودن مشتری</h2></div>
+      <button class="icon-button modal-close" data-close-modal aria-label="بستن"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <form id="customerForm" class="modal-form" novalidate>
+      <label class="field"><span class="field-label">نام و نام خانوادگی<span class="required-mark">*</span></span>
+        <input id="newCustomerName" class="input" required minlength="3" placeholder="نام کامل مشتری" />
+        <span class="field-error">نام باید حداقل ۳ نویسه باشد.</span>
+      </label>
+      <label class="field"><span class="field-label">شماره تماس</span>
+        <input id="newCustomerPhone" class="input" inputmode="tel" pattern="[۰-۹0-9+\s•\-]*" placeholder="۰۹۱۲ ••• •• ۴۵" />
+        <span class="field-hint">در محیط نمایشی شماره کامل ذخیره نمی‌شود؛ نمایش ماسک‌شده کافی است.</span>
+      </label>
+      <label class="field"><span class="field-label">یادداشت داخلی</span>
+        <textarea id="newCustomerNotes" class="textarea" rows="2" placeholder="اختیاری"></textarea>
+      </label>
+      <div class="modal-disclaimer"><span aria-hidden="true">ⓘ</span> این مشتری فقط تا بارگذاری مجدد صفحه در فهرست نمایشی می‌ماند.</div>
+      <div class="modal-actions">
+        <button type="button" class="button button-secondary" data-close-modal>انصراف</button>
+        <button type="submit" class="button button-primary">افزودن به نمایش</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- مودال ثبت قیمت -->
+<div class="modal-backdrop" id="priceModal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="priceModalTitle">
+    <div class="modal-head">
+      <div><span class="eyebrow"><span class="eyebrow-line"></span>نرخ نمایشی</span><h2 id="priceModalTitle">ثبت قیمت مرجع</h2></div>
+      <button class="icon-button modal-close" data-close-modal aria-label="بستن"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <form id="priceForm" class="modal-form" novalidate>
+      <label class="field"><span class="field-label">محصول<span class="required-mark">*</span></span>
+        <select id="priceProduct" class="select" required></select>
+      </label>
+      <label class="field"><span class="field-label">قیمت هر گرم (واحد پول نمونه)<span class="required-mark">*</span></span>
+        <input id="priceValue" class="input" type="number" min="1" step="1" placeholder="مثلاً ۷۵۰۰۰۰۰" required />
+        <span class="field-error">قیمت باید عددی بزرگ‌تر از صفر باشد.</span>
+      </label>
+      <div class="modal-disclaimer"><span aria-hidden="true">ⓘ</span> اتصال به منبع قیمت زنده فعال نیست؛ این نرخ فقط در همین صفحه به‌روزرسانی می‌شود.</div>
+      <div class="modal-actions">
+        <button type="button" class="button button-secondary" data-close-modal>انصراف</button>
+        <button type="submit" class="button button-primary">ثبت نرخ نمایشی</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- مودال پرداخت/دریافت -->
+<div class="modal-backdrop" id="paymentModal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="paymentModalTitle">
+    <div class="modal-head">
+      <div><span class="eyebrow"><span class="eyebrow-line"></span>تراکنش نمایشی</span><h2 id="paymentModalTitle">ثبت پرداخت / دریافت</h2></div>
+      <button class="icon-button modal-close" data-close-modal aria-label="بستن"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <form id="paymentForm" class="modal-form" novalidate>
+      <label class="field"><span class="field-label">مشتری<span class="required-mark">*</span></span>
+        <select id="payCustomer" class="select" required></select>
+      </label>
+      <div class="form-grid-2">
+        <label class="field"><span class="field-label">جهت<span class="required-mark">*</span></span>
+          <select id="payDirection" class="select" required>
+            <option value="receive">دریافت از مشتری</option>
+            <option value="pay">پرداخت به مشتری</option>
+          </select>
+        </label>
+        <label class="field"><span class="field-label">روش</span>
+          <select id="payMethod" class="select">
+            <option>انتقال بانکی</option><option>نقدی</option><option>کارت</option><option>چک</option>
+          </select>
+        </label>
+      </div>
+      <label class="field"><span class="field-label">مبلغ (واحد پول نمونه)<span class="required-mark">*</span></span>
+        <input id="payAmount" class="input" type="number" min="1" step="1" placeholder="مثلاً ۱۰۰۰۰۰۰۰۰" required />
+        <span class="field-error">مبلغ باید عددی بزرگ‌تر از صفر باشد.</span>
+      </label>
+      <div class="modal-disclaimer"><span aria-hidden="true">ⓘ</span> در سامانه عملیاتی، دریافت وجه بستانکاری و پرداخت وجه بدهکاری مشتری را تغییر می‌دهد؛ اینجا فقط ردیف نمایشی ساخته می‌شود.</div>
+      <div class="modal-actions">
+        <button type="button" class="button button-secondary" data-close-modal>انصراف</button>
+        <button type="submit" class="button button-primary">ثبت نمایشی</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- مودال تحویل کالا -->
+<div class="modal-backdrop" id="deliveryModal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="deliveryModalTitle">
+    <div class="modal-head">
+      <div><span class="eyebrow"><span class="eyebrow-line"></span>رسید نمایشی</span><h2 id="deliveryModalTitle">ثبت تحویل جدید</h2></div>
+      <button class="icon-button modal-close" data-close-modal aria-label="بستن"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    </div>
+    <form id="deliveryForm" class="modal-form" novalidate>
+      <label class="field"><span class="field-label">مشتری<span class="required-mark">*</span></span>
+        <select id="delCustomer" class="select" required></select>
+      </label>
+      <div class="form-grid-2">
+        <label class="field"><span class="field-label">محصول<span class="required-mark">*</span></span>
+          <select id="delProduct" class="select" required></select>
+        </label>
+        <label class="field"><span class="field-label">وزن تحویل (گرم)<span class="required-mark">*</span></span>
+          <input id="delWeight" class="input" type="number" min="0.001" step="0.001" placeholder="مثلاً ۵۰" required />
+          <span class="field-error">وزن باید عددی بزرگ‌تر از صفر باشد.</span>
+        </label>
+      </div>
+      <div class="modal-disclaimer"><span aria-hidden="true">ⓘ</span> طبق قواعد فعلی، تحویل فقط دفتر وزنی را کم می‌کند و سند مالی جدید ایجاد نمی‌شود. در این نسخه هیچ مانده واقعی تغییر نمی‌کند.</div>
+      <div class="modal-actions">
+        <button type="button" class="button button-secondary" data-close-modal>انصراف</button>
+        <button type="submit" class="button button-primary">ثبت رسید نمایشی</button>
+      </div>
+    </form>
+  </div>
+</div>

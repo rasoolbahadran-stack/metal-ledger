@@ -1,7 +1,7 @@
 {
   "name": "metal-ledger-suite",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Persian-first metal trade ledger — Astro showcase and Next.js API foundation",
   "workspaces": [
     "apps/web",

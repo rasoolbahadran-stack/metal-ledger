@@ -1,0 +1,52 @@
+---
+---
+
+<section class="view-section" data-section="payments" aria-label="پرداخت‌ها و دریافت‌ها">
+  <div class="page-heading">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>تسویه مالی</div>
+      <h1>پرداخت‌ها و دریافت‌ها</h1>
+      <p class="page-sub">ثبت جریان وجه و اثر آن در دفتر مالی مشتریان.</p>
+    </div>
+    <div class="heading-actions">
+      <button class="button button-primary" data-open-modal="paymentModal">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        ثبت پرداخت / دریافت
+      </button>
+    </div>
+  </div>
+
+  <div class="section-stats">
+    <div><small>جمع دریافت‌های نمایشی</small><strong id="payReceived">۰</strong><span>واحد پول نمونه</span></div>
+    <div><small>جمع پرداخت‌های نمایشی</small><strong id="payPaid">۰</strong><span>واحد پول نمونه</span></div>
+    <div><small>میانگین زمان تسویه</small><strong>۳.۴ روز</strong><span>در داده نمایشی</span></div>
+    <div><small>تراکنش‌های پیش‌نویس</small><strong id="payPending">۰</strong><span class="small-warning">نیازمند قطعی‌سازی</span></div>
+  </div>
+
+  <article class="panel full-panel">
+    <div class="table-toolbar">
+      <div></div>
+      <div class="toolbar-filters">
+        <div class="select-wrap">
+          <select id="paymentDirectionFilter" class="select" style="min-height:38px;width:180px;font-size:var(--fs-xs)" aria-label="فیلتر جهت تراکنش">
+            <option value="all">دریافت و پرداخت</option>
+            <option value="receive">فقط دریافت</option>
+            <option value="pay">فقط پرداخت</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table" id="paymentTable">
+        <thead><tr><th>شناسه</th><th>مشتری</th><th>جهت</th><th>روش</th><th>مبلغ</th><th>تاریخ</th><th>وضعیت</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="paymentEmpty">
+      <span class="empty-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg></span>
+      <strong>تراکنشی یافت نشد</strong>
+      <p>برای این فیلتر تراکنش نمایشی وجود ندارد.</p>
+    </div>
+    <div class="table-footer"><span id="paymentResults">—</span><span>دریافت وجه = بستانکار مشتری · پرداخت وجه = بدهکار مشتری</span></div>
+  </article>
+</section>

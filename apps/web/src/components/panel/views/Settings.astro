@@ -1,0 +1,58 @@
+---
+---
+
+<section class="view-section" data-section="settings" aria-label="تنظیمات">
+  <div class="page-heading">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>پیکربندی سامانه</div>
+      <h1>تنظیمات</h1>
+      <p class="page-sub">پیکربندی پایه کسب‌وکار، نمایش و اطلاعات امنیتی.</p>
+    </div>
+  </div>
+
+  <div class="settings-grid">
+    <article class="panel settings-card">
+      <div class="settings-card-head">
+        <span class="settings-icon"><svg viewBox="0 0 24 24"><path d="M3 10h18M5 10V6l7-3 7 3v4M5 10v10h14V10M9 14h6"/></svg></span>
+        <div><h3>اطلاعات کسب‌وکار</h3><p>نام و مشخصات فضای کاری</p></div>
+      </div>
+      <label class="field"><span class="field-label">نام کسب‌وکار</span>
+        <input class="input" value="بازرگانی میزان فلز" />
+      </label>
+      <label class="field"><span class="field-label">واحد پول پیش‌فرض</span>
+        <select class="select">
+          <option value="" selected disabled>انتخاب واحد پول پس از تأیید</option>
+          <option value="IRR">ریال · نیازمند تأیید</option>
+          <option value="IRT">تومان · نیازمند تأیید</option>
+        </select>
+        <span class="field-hint">تعیین ارز پیش‌فرض نیازمند تصمیم صاحب کسب‌وکار است؛ در مستندات قواعد حسابداری باز است.</span>
+      </label>
+      <button class="button button-secondary" data-toast="تنظیمات در نسخه نمایشی ذخیره نمی‌شوند.">ذخیره تغییرات</button>
+    </article>
+
+    <article class="panel settings-card">
+      <div class="settings-card-head">
+        <span class="settings-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.2 1-.1 1.8-1.6 1.1-1.5-.7-.1-.1-1.3.7-.4 1.7h-2l-.8-1.5-1.5-.2-1.3 1-1.7-.8-.1-1.8 1.2-1.1-.1-1.5-1.5-.8v-2l1.6-.7.5-1.4-.8-1.6 1.3-1.4 1.7.5 1.2-.7.4-1.7h2l.8 1.5 1.5.2 1.3-1 1.7.8.1 1.8-1.2 1.1.1 1.5 1.5.8v2l-1.6.7-.5 1.4Z"/></svg></span>
+        <div><h3>نمایش و دسترسی‌پذیری</h3><p>ترجیحات رابط کاربری</p></div>
+      </div>
+      <div class="setting-row"><div><strong>تم سامانه</strong><small>تغییر بین حالت روشن و تاریک</small></div><button class="button button-secondary button-sm" id="settingsTheme">تغییر تم</button></div>
+      <div class="setting-row"><div><strong>زبان رابط کاربری</strong><small>زبان فارسی و چیدمان راست‌چین</small></div><span class="status-pill success">فارسی</span></div>
+      <div class="setting-row"><div><strong>انیمیشن‌ها</strong><small>هماهنگ با تنظیم Reduced Motion دستگاه</small></div><span class="status-pill success">فعال</span></div>
+      <div class="setting-row"><div><strong>فونت</strong><small>Vazirmatn — self-hosted بدون CDN خارجی</small></div><span class="status-pill success">فعال</span></div>
+    </article>
+
+    <article class="panel settings-card" style="grid-column:1/-1">
+      <div class="settings-card-head">
+        <span class="settings-icon"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v5c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <div><h3>امنیت و سوابق (نقشه راه نسخه عملیاتی)</h3><p>سیاست‌های حفاظت اطلاعات در معماری Backend</p></div>
+      </div>
+      <div class="security-points">
+        <p><i>✓</i> احراز هویت مبتنی بر Session سمت سرور (Better Auth) — در سورس آماده، نیازمند استقرار</p>
+        <p><i>✓</i> ثبت سابقه عملیات حساس در Audit Log — مدل تعریف شده است</p>
+        <p><i>✓</i> جلوگیری از حذف مستقیم اسناد قطعی — اصلاح فقط با سند معکوس</p>
+        <p><i>✓</i> کنترل دسترسی مبتنی بر نقش و مالکیت داده — پیش‌فرض رد دسترسی</p>
+      </div>
+      <div class="security-note">این موارد در نسخه عملیاتی باید با استقرار PostgreSQL، اجرای Migration، Provisioning مدیر اولیه و تست امنیتی مستقل تأیید شوند.</div>
+    </article>
+  </div>
+</section>

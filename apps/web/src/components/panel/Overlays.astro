@@ -1,0 +1,26 @@
+---
+---
+
+
+<div class="palette-backdrop" id="paletteBackdrop" role="dialog" aria-modal="true" aria-label="جست‌وجوی سراسری">
+  <div class="palette">
+    <div class="palette-input-row">
+      <svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+      <input id="paletteInput" type="text" placeholder="جست‌وجوی صفحه، مشتری، سند یا اقدام..." aria-label="عبارت جست‌وجو" autocomplete="off" />
+      <kbd>Esc</kbd>
+    </div>
+    <div class="palette-results" id="paletteResults" role="listbox" aria-label="نتایج جست‌وجو"></div>
+  </div>
+</div>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="جزئیات">
+  <div class="drawer-head">
+    <strong style="color:var(--text-strong);font-size:var(--fs-title)">جزئیات</strong>
+    <button class="icon-button" id="drawerClose" aria-label="بستن پنل">
+      <svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot" id="drawerFoot"></div>
+</aside>

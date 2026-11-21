@@ -1,0 +1,45 @@
+---
+---
+
+<section class="view-section" data-section="reports" aria-label="گزارش‌ها">
+  <div class="page-heading">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-line"></span>تحلیل عملکرد</div>
+      <h1>گزارش‌ها</h1>
+      <p class="page-sub">مرور عملکرد معاملاتی، گردش وزنی و وضعیت مالی — روی داده نمایشی.</p>
+    </div>
+    <div class="heading-actions">
+      <button class="button button-secondary" data-toast="انتخاب بازه گزارش پس از اتصال به دیتابیس فعال می‌شود.">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+        ۳۰ روز اخیر
+      </button>
+    </div>
+  </div>
+
+  <div class="report-grid">
+    <article class="panel report-tile panel-hover">
+      <span class="report-icon gold"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h17M8 15l3-4 3 2 5-7"/></svg></span>
+      <h3>گزارش معاملات</h3>
+      <p>فیلتر بازه روز، نوع معامله و محصول؛ با جمع مبلغ خرید و فروش و گردش وزنی. این گزارش روی داده نمایشی همین صفحه اجرا می‌شود.</p>
+      <button class="text-link" id="openReportTrades">ساخت گزارش <span>←</span></button>
+    </article>
+    <article class="panel report-tile panel-hover">
+      <span class="report-icon violet"><svg viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="M12 12v9"/></svg></span>
+      <h3>گزارش موجودی وزنی</h3>
+      <p>مانده هر محصول برای مشتریان همراه با گردش ورود و خروج. خروجی نهایی پس از اتصال به دیتابیس فعال می‌شود.</p>
+      <button class="text-link" data-toast="این گزارش پس از اتصال دیتابیس در دسترس است؛ مانده وزنی فعلی در صفحه «مانده وزنی» قابل مشاهده است." data-nav="balances">مشاهده مانده وزنی <span>←</span></button>
+    </article>
+    <article class="panel report-tile panel-hover">
+      <span class="report-icon rose"><svg viewBox="0 0 24 24"><path d="M12 3v18M17 7.5c0-1.7-2.2-3-5-3s-5 1.3-5 3 1.6 2.6 5 3 5 1.3 5 3-2.2 3-5 3-5-1.3-5-3"/></svg></span>
+      <h3>گزارش بدهکاران</h3>
+      <p>مانده بدهکاری و بستانکاری مشتریان و لیست پیگیری. خروجی رسمی نیازمند اتصال به دیتابیس است.</p>
+      <button class="text-link" data-toast="گزارش مالی رسمی پس از اتصال دیتابیس در دسترس است؛ خلاصه فعلی در نمای کلی نمایش داده می‌شود." data-nav="dashboard">مشاهده خلاصه <span>←</span></button>
+    </article>
+    <article class="panel report-tile panel-hover">
+      <span class="report-icon blue"><svg viewBox="0 0 24 24"><path d="M6 3.5h9l4 4V21H6zM15 3.5V8h4M9 12h7M9 16h7"/></svg></span>
+      <h3>صورتحساب مشتری</h3>
+      <p>دفتر حساب هر مشتری با گردش‌ها، مانده تجمعی و خروجی قابل چاپ.</p>
+      <button class="text-link" data-nav="statements">مشاهده دفتر حساب <span>←</span></button>
+    </article>
+  </div>
+</section>
