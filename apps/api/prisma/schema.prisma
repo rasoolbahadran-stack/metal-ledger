@@ -1,0 +1,354 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum TradeKind {
+  CUSTOMER_BUYS_FROM_BUSINESS
+  CUSTOMER_SELLS_TO_BUSINESS
+}
+
+enum RecordStatus {
+  DRAFT
+  POSTED
+  REVERSED
+}
+
+enum PriceSource {
+  MANUAL
+  API
+}
+
+enum PaymentDirection {
+  RECEIVED_FROM_CUSTOMER
+  PAID_TO_CUSTOMER
+}
+
+enum PaymentMethod {
+  CASH
+  CARD
+  BANK_TRANSFER
+  OTHER
+}
+
+enum DeliveryStatus {
+  DRAFT
+  DELIVERED
+  REVERSED
+}
+
+enum WeightEntryKind {
+  TRADE_PURCHASE
+  TRADE_SALE
+  DELIVERY_OUT
+  ADJUSTMENT
+  REVERSAL
+}
+
+enum FinancialSourceType {
+  TRADE
+  PAYMENT
+  ADJUSTMENT
+  REVERSAL
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  image         String?
+  role          String    @default("user")
+  isActive      Boolean   @default(true)
+  banned        Boolean   @default(false)
+  banReason     String?
+  banExpires    DateTime?
+  customerId    String?   @unique
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  sessions      Session[]
+  accounts      Account[]
+  customer      Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  auditLogs     AuditLog[]
+  trades        Trade[]   @relation("TradeCreator")
+  payments      Payment[] @relation("PaymentCreator")
+  deliveries    Delivery[] @relation("DeliveryCreator")
+  priceQuotes   PriceQuote[] @relation("PriceQuoteCreator")
+
+  @@index([role, isActive])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  impersonatedBy String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  accountId             String
+  providerId            String
+  userId                String
+  accessToken           String?   @db.Text
+  refreshToken          String?   @db.Text
+  idToken               String?   @db.Text
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?   @db.Text
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@unique([providerId, accountId])
+}
+
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String   @db.Text
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+}
+
+model CurrencyUnit {
+  code             String                 @id @db.VarChar(3)
+  name             String
+  minorUnitScale   Int
+  isActive         Boolean                @default(true)
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
+  prices           PriceQuote[]
+  trades           Trade[]
+  payments         Payment[]
+  financialEntries FinancialLedgerEntry[]
+
+  @@index([isActive, name])
+}
+
+model Customer {
+  id               String                 @id @default(cuid())
+  code             String                 @unique
+  fullName         String
+  phone            String?
+  email            String?
+  notes            String?                @db.Text
+  isActive         Boolean                @default(true)
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
+  user             User?
+  trades           Trade[]
+  payments         Payment[]
+  deliveries       Delivery[]
+  weightEntries    WeightLedgerEntry[]
+  financialEntries FinancialLedgerEntry[]
+  auditLogs        AuditLog[]
+
+  @@index([fullName])
+  @@index([phone])
+  @@index([isActive, createdAt])
+}
+
+model MetalProduct {
+  id              String              @id @default(cuid())
+  code            String              @unique
+  name            String
+  metalType       String
+  purityLabel     String?
+  baseUnit        String              @default("g")
+  weightPrecision Int                 @default(3)
+  isActive        Boolean             @default(true)
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  prices          PriceQuote[]
+  trades          Trade[]
+  deliveries      Delivery[]
+  weightEntries   WeightLedgerEntry[]
+
+  @@index([metalType, isActive])
+}
+
+model PriceQuote {
+  id           String       @id @default(cuid())
+  productId    String
+  source       PriceSource  @default(MANUAL)
+  unitPrice    Decimal      @db.Decimal(28, 8)
+  currencyCode String       @db.VarChar(3)
+  validAt      DateTime     @default(now())
+  providerKey  String?
+  note         String?      @db.Text
+  creatorId    String?
+  createdAt    DateTime     @default(now())
+  product      MetalProduct @relation(fields: [productId], references: [id], onDelete: Restrict)
+  currency     CurrencyUnit @relation(fields: [currencyCode], references: [code], onDelete: Restrict)
+  creator      User?        @relation("PriceQuoteCreator", fields: [creatorId], references: [id], onDelete: SetNull)
+
+  @@index([productId, validAt(sort: Desc)])
+  @@index([source, validAt(sort: Desc)])
+}
+
+model Trade {
+  id             String                 @id @default(cuid())
+  documentNo     String                 @unique
+  customerId     String
+  productId      String
+  kind           TradeKind
+  weight         Decimal                @db.Decimal(28, 12)
+  unitPrice      Decimal                @db.Decimal(28, 8)
+  totalAmount    Decimal                @db.Decimal(28, 4)
+  currencyCode   String                 @db.VarChar(3)
+  moneyScale     Int
+  status         RecordStatus           @default(DRAFT)
+  tradedAt       DateTime               @default(now())
+  note           String?                @db.Text
+  createdById    String
+  reversalOfId   String?                @unique
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+  customer       Customer               @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  product        MetalProduct           @relation(fields: [productId], references: [id], onDelete: Restrict)
+  currency       CurrencyUnit           @relation(fields: [currencyCode], references: [code], onDelete: Restrict)
+  createdBy      User                   @relation("TradeCreator", fields: [createdById], references: [id], onDelete: Restrict)
+  reversalOf     Trade?                 @relation("TradeReversal", fields: [reversalOfId], references: [id], onDelete: Restrict)
+  reversal       Trade?                 @relation("TradeReversal")
+  weightEntry    WeightLedgerEntry?
+  financialEntry FinancialLedgerEntry?
+  auditLogs      AuditLog[]
+
+  @@index([customerId, tradedAt(sort: Desc)])
+  @@index([productId, tradedAt(sort: Desc)])
+  @@index([status, tradedAt(sort: Desc)])
+}
+
+model Payment {
+  id             String                 @id @default(cuid())
+  documentNo     String                 @unique
+  customerId     String
+  direction      PaymentDirection
+  amount         Decimal                @db.Decimal(28, 4)
+  currencyCode   String                 @db.VarChar(3)
+  moneyScale     Int
+  method         PaymentMethod          @default(BANK_TRANSFER)
+  reference      String?
+  paidAt         DateTime               @default(now())
+  notes          String?                @db.Text
+  status         RecordStatus           @default(POSTED)
+  createdById    String
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+  customer       Customer               @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  currency       CurrencyUnit           @relation(fields: [currencyCode], references: [code], onDelete: Restrict)
+  createdBy      User                   @relation("PaymentCreator", fields: [createdById], references: [id], onDelete: Restrict)
+  financialEntry FinancialLedgerEntry?
+  auditLogs      AuditLog[]
+
+  @@index([customerId, paidAt(sort: Desc)])
+  @@index([direction, paidAt(sort: Desc)])
+}
+
+model Delivery {
+  id             String         @id @default(cuid())
+  documentNo     String         @unique
+  customerId     String
+  productId      String
+  weight         Decimal        @db.Decimal(28, 12)
+  status         DeliveryStatus @default(DRAFT)
+  deliveredAt    DateTime       @default(now())
+  receiptFileKey String?
+  note           String?        @db.Text
+  createdById    String
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  customer       Customer       @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  product        MetalProduct   @relation(fields: [productId], references: [id], onDelete: Restrict)
+  createdBy      User           @relation("DeliveryCreator", fields: [createdById], references: [id], onDelete: Restrict)
+  weightEntry    WeightLedgerEntry?
+  auditLogs      AuditLog[]
+
+  @@index([customerId, deliveredAt(sort: Desc)])
+  @@index([productId, deliveredAt(sort: Desc)])
+}
+
+model WeightLedgerEntry {
+  id               String          @id @default(cuid())
+  customerId       String
+  productId        String
+  kind             WeightEntryKind
+  quantity         Decimal         @db.Decimal(28, 12)
+  sourceTradeId    String?         @unique
+  sourceDeliveryId String?         @unique
+  description      String?         @db.Text
+  createdById      String?
+  createdAt        DateTime        @default(now())
+  customer         Customer        @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  product          MetalProduct    @relation(fields: [productId], references: [id], onDelete: Restrict)
+  sourceTrade      Trade?          @relation(fields: [sourceTradeId], references: [id], onDelete: Restrict)
+  sourceDelivery   Delivery?       @relation(fields: [sourceDeliveryId], references: [id], onDelete: Restrict)
+
+  @@index([customerId, productId, createdAt])
+}
+
+model FinancialLedgerEntry {
+  id              String              @id @default(cuid())
+  customerId      String
+  sourceType      FinancialSourceType
+  sourceTradeId   String?             @unique
+  sourcePaymentId String?             @unique
+  debitAmount     Decimal             @default(0) @db.Decimal(28, 4)
+  creditAmount    Decimal             @default(0) @db.Decimal(28, 4)
+  currencyCode    String              @db.VarChar(3)
+  moneyScale      Int
+  description     String?             @db.Text
+  createdById     String?
+  createdAt       DateTime            @default(now())
+  customer        Customer            @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  currency        CurrencyUnit        @relation(fields: [currencyCode], references: [code], onDelete: Restrict)
+  sourceTrade     Trade?              @relation(fields: [sourceTradeId], references: [id], onDelete: Restrict)
+  sourcePayment   Payment?            @relation(fields: [sourcePaymentId], references: [id], onDelete: Restrict)
+
+  @@index([customerId, currencyCode, createdAt])
+}
+
+model AuditLog {
+  id          String    @id @default(cuid())
+  actorId     String?
+  customerId  String?
+  tradeId     String?
+  paymentId   String?
+  deliveryId  String?
+  entityType  String
+  entityId    String
+  action      String
+  reason      String?
+  beforeJson  Json?
+  afterJson   Json?
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime  @default(now())
+  actor       User?     @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  customer    Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  trade       Trade?    @relation(fields: [tradeId], references: [id], onDelete: SetNull)
+  payment     Payment?  @relation(fields: [paymentId], references: [id], onDelete: SetNull)
+  delivery    Delivery? @relation(fields: [deliveryId], references: [id], onDelete: SetNull)
+
+  @@index([entityType, entityId, createdAt(sort: Desc)])
+  @@index([actorId, createdAt(sort: Desc)])
+  @@index([customerId, createdAt(sort: Desc)])
+}

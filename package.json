@@ -1,0 +1,23 @@
+{
+  "name": "metal-ledger-suite",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Persian-first metal trade ledger — Astro showcase and Next.js API foundation",
+  "workspaces": [
+    "apps/web",
+    "apps/api"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev:web": "npm --workspace @metal-ledger/web run dev",
+    "dev:api": "npm --workspace @metal-ledger/api run dev",
+    "build:web": "npm --workspace @metal-ledger/web run build",
+    "build:api": "npm --workspace @metal-ledger/api run build",
+    "check:api": "npm --workspace @metal-ledger/api run typecheck",
+    "db:generate": "npm --workspace @metal-ledger/api run db:generate",
+    "db:migrate": "npm --workspace @metal-ledger/api run db:migrate",
+    "test:api": "npm --workspace @metal-ledger/api run test"
+  }
+}
