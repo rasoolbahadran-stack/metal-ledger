@@ -59,7 +59,7 @@ npm run dev:web
 
 نسخه نمایشی Astro در `http://localhost:4321` و API/پرتال Next.js در `http://localhost:3000` باز می‌شوند. وضعیت API در `http://localhost:3000/api/health` قابل بررسی است. فایل محیطی را با Secret واقعی تکمیل کنید؛ هیچ Credential واقعی نباید Commit شود.
 
-برای ایجاد اولین مدیر، پس از نصب بسته‌ها و آماده‌سازی Environment، طبق `docs/DEPLOYMENT.md` از CLI رسمی Better Auth استفاده کنید. ثبت‌نام عمومی به‌صورت پیش‌فرض غیرفعال است.
+اسکریپت Provisioning امن برای ایجاد مدیر اولیه هنوز پیاده‌سازی و آزمون نشده است؛ تا تکمیل آن، Backend را برای معاملات واقعی فعال نکنید. ثبت‌نام عمومی به‌صورت پیش‌فرض غیرفعال است. جزئیات در `docs/DEPLOYMENT.md` آمده است.
 
 ## انتشار نسخه نمایشی با GitHub Pages
 
